@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Categorias - EcoTrend</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+  <div class="container">
+    <a class="navbar-brand fw-bold text-success" href="index.html">EcoTrend</a>
+  </div>
+</nav>
+
+<div class="container my-5">
+  <div class="row">
+    <aside class="col-md-3">
+      <h5>Filtros</h5>
+      <form id="filtroForm">
+        <div class="mb-3">
+          <label class="form-label">Preço Máximo</label>
+          <input type="number" id="precoMax" class="form-control">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Tipo</label>
+          <select id="tipoFiltro" class="form-select">
+            <option value="">Todos</option>
+            <option value="Roupas">Roupas</option>
+            <option value="Beleza">Beleza</option>
+            <option value="Casa">Casa</option>
+            <option value="Tecnologia">Tecnologia</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Marca</label>
+          <select id="marcaFiltro" class="form-select">
+            <option value="">Todas</option>
+            <option value="EcoTrend">EcoTrend</option>
+            <option value="EcoPower">EcoPower</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-success w-100">Filtrar</button>
+      </form>
+    </aside>
+    <section class="col-md-9">
+      <h2>Todos os Produtos</h2>
+      <div class="row g-4" id="produtosLista">
+        <div class="col-md-4 produto" data-tipo="Roupas" data-preco="79.90" data-marca="EcoTrend">
+          <div class="card">
+            <img src="/imgs/camiseta-organica.png" class="card-img-top">
+            <div class="card-body text-center">
+              <h5>Camiseta Orgânica</h5>
+              <p>R$ 79,90</p>
+              <a href="produto.html?id=camiseta" class="btn btn-success">Ver Mais</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 produto" data-tipo="Beleza" data-preco="39.90" data-marca="EcoTrend">
+          <div class="card">
+            <img src="/imgs/shampoo-vegano.png" class="card-img-top">
+            <div class="card-body text-center">
+              <h5>Shampoo Vegano</h5>
+              <p>R$ 39,90</p>
+              <a href="produto.html?id=shampoo" class="btn btn-success">Ver Mais</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 produto" data-tipo="Tecnologia" data-preco="59.90" data-marca="EcoTrend">
+          <div class="card">
+            <img src="/imgs/garrafa-sustentavel.png" class="card-img-top">
+            <div class="card-body text-center">
+              <h5>Garrafa Sustentável</h5>
+              <p>R$ 59,90</p>
+              <a href="produto.html?id=garrafa" class="btn btn-success">Ver Mais</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 produto" data-tipo="Casa" data-preco="129.90" data-marca="EcoTrend">
+          <div class="card">
+            <img src="/imgs/kit-cozinha.png" class="card-img-top">
+            <div class="card-body text-center">
+              <h5>Kit Eco-Cozinha</h5>
+              <p>R$ 129,90</p>
+              <a href="produto.html?id=cozinha" class="btn btn-success">Ver Mais</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 produto" data-tipo="Beleza" data-preco="24.99" data-marca="EcoTrend">
+          <div class="card">
+            <img src="/imgs/sabonte-natural.png" class="card-img-top">
+            <div class="card-body text-center">
+              <h5>Sabonete Natural</h5>
+              <p>R$ 24,99</p>
+              <a href="produto.html?id=sabonete" class="btn btn-success">Ver Mais</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 produto" data-tipo="Tecnologia" data-preco="199.90" data-marca="EcoPower">
+          <div class="card">
+            <img src="/imgs/carregador-solar.png" class="card-img-top">
+            <div class="card-body text-center">
+              <h5>Carregador Solar Portátil EcoPower</h5>
+              <p>R$ 199,90</p>
+              <a href="produto.html?id=carregador" class="btn btn-success">Ver Mais</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<script>
+document.getElementById("filtroForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+  const precoMax = parseFloat(document.getElementById("precoMax").value);
+  const tipo = document.getElementById("tipoFiltro").value;
+  const marca = document.getElementById("marcaFiltro").value;
+
+  document.querySelectorAll(".produto").forEach(produto => {
+    const preco = parseFloat(produto.getAttribute("data-preco"));
+    const tipoProduto = produto.getAttribute("data-tipo");
+    const marcaProduto = produto.getAttribute("data-marca");
+    let mostrar = true;
+    if (!isNaN(precoMax) && preco > precoMax) mostrar = false;
+    if (tipo && tipoProduto !== tipo) mostrar = false;
+    if (marca && marcaProduto !== marca) mostrar = false;
+    produto.style.display = mostrar ? "block" : "none";
+  });
+});
+</script>
+</body>
+</html>
