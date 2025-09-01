@@ -18,5 +18,6 @@ Projeto de e-commerce desenvolvido para o CheckPoint 04 da disciplina de Front-e
 ## 🚀 Publicação
 https://github.com/LuisSilva06/cp04-front-end.git
 
+https://cp04-front-end.vercel.app
 
 Luis Gustavo Mattos da Silva RM:561672
